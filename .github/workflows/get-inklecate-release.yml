@@ -7,9 +7,10 @@ on:
 jobs:
   get-latest-inklecate-release:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
 
     steps:
-      # Checks out the repo so we can commit back to it later
       - uses: actions/checkout@v4
 
       - uses: robinraju/release-downloader@v1
@@ -25,6 +26,7 @@ jobs:
           unzip inklecate_linux.zip -d ./bin/linux
           unzip inklecate_mac.zip -d ./bin/mac
           unzip inklecate_windows.zip -d ./bin/windows
+          rm inklecate_*.zip
 
       - name: Write version from release tag to package.json
         run: |
@@ -39,3 +41,5 @@ jobs:
         with:
           registry-url: 'https://registry.npmjs.org'
       - run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
