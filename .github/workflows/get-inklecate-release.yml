@@ -55,7 +55,8 @@ jobs:
     if: ${{needs.get-latest-inklecate-release.outputs.committed}}
     steps:
       - uses: actions/checkout@v4
-        ref: ${{needs.get-latest-inklecate-release.outputs.ref}}
+        with:
+          ref: ${{needs.get-latest-inklecate-release.outputs.ref}}
       - uses: actions/setup-node@v4
         with:
           registry-url: 'https://registry.npmjs.org'
