@@ -1,0 +1,19 @@
+name: Get latest release and commit binaries to the repo
+
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  get-latest-inklecate-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checks out the repo so we can commit back to it later
+      - uses: actions/checkout@v4
+
+      - uses: robinraju/release-downloader@v1
+        with:
+          repository: 'inkle/ink'
+          latest: true
+          fileName: '*'
