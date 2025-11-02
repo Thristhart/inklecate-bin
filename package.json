@@ -1,7 +1,7 @@
 {
   "name": "inklecate-bin",
   "description": "simple repackaging of the inklecate binaries on npm. automatically updated from github releases",
-  "version": "1.2.0-alpha6",
+  "version": "1.2.0",
   "type": "module",
   "main": "index.mjs",
   "types": "index.d.ts",
