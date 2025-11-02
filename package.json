@@ -7,5 +7,9 @@
     "license": "MIT",
     "repository": {
         "url": "git+https://github.com/Thristhart/inklecate-bin.git"
-    }
+    },
+    "files": [
+        "index.mjs",
+        "bin/**/*"
+    ]
 }
