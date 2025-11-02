@@ -28,10 +28,10 @@ jobs:
 
       - name: Write version from release tag to package.json
         run: |
-          VERSION="${{steps.get-release.outputs.tag_name}}"
+          VERSION="${{steps.get-release.outputs.tag_name}}-alpha"
           VERSION="${VERSION#v}"
           VERSION="${VERSION#.}"
-          jq --arg VERSION "$VERSION" '.version = "$VERSION-alpha"' package.json > package_with_version.json
+          jq --arg VERSION "$VERSION" '.version = $VERSION' package.json > package_with_version.json
           mv package_with_version.json package.json
           
       # Setup .npmrc file to publish to npm
