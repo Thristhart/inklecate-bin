@@ -26,6 +26,7 @@ jobs:
       
       - name: Unzip binaries
         run: |
+          rm -rf ./bin
           mkdir -p ./bin
           unzip inklecate_linux.zip -d ./bin/linux
           unzip inklecate_mac.zip -d ./bin/mac
