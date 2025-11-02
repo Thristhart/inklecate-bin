@@ -34,7 +34,7 @@ jobs:
 
       - name: Write version from release tag to package.json
         run: |
-          VERSION="${{steps.get-release.outputs.tag_name}}-alpha5"
+          VERSION="${{steps.get-release.outputs.tag_name}}-alpha6"
           VERSION="${VERSION#v}"
           VERSION="${VERSION#.}"
           jq --arg VERSION "$VERSION" '.version = $VERSION' package.json > package_with_version.json
@@ -52,7 +52,7 @@ jobs:
   publish-to-npm:
     runs-on: ubuntu-latest
     needs: get-latest-inklecate-release
-    if: ${{needs.get-latest-inklecate-release.outputs.committed}}
+    if: ${{needs.get-latest-inklecate-release.outputs.committed == 'true'}}
     permissions:
       id-token: write
       contents: read
