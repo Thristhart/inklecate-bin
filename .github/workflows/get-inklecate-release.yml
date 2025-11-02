@@ -10,6 +10,8 @@ jobs:
     permissions:
       id-token: write
       contents: read
+    outputs:
+      committed: ${{steps.commit.outputs.committed}}
 
     steps:
       - uses: actions/checkout@v4
@@ -36,13 +38,24 @@ jobs:
           VERSION="${VERSION#.}"
           jq --arg VERSION "$VERSION" '.version = $VERSION' package.json > package_with_version.json
           mv package_with_version.json package.json
-          
+
+      - uses: EndBug/add-and-commit@v9
+        with:
+          default_author: github_actions
+          add: |
+            - bin
+            - package.json
+        id: commit
+
+  publish-to-npm:
+    needs: get-latest-inklecate-release
+    if: ${{jobs.get-latest-inklecate-release.outputs.committed}}
+    steps:
+      - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
+          registry-url: 'https://registry.npmjs.org'
           node-version: latest
       - name: Update npm
         run: npm install -g npm@latest
-      - run: npm publish --access public --tag alpha --registry=https://npm.pkg.github.com
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - run: npm publish --access public --tag alpha --registry=https://registry.npmjs.org
+      - run: npm publish --access public --tag alpha
