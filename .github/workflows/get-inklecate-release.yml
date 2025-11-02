@@ -48,8 +48,9 @@ jobs:
         id: commit
 
   publish-to-npm:
+    runs-on: ubuntu-latest
     needs: get-latest-inklecate-release
-    if: ${{jobs.get-latest-inklecate-release.outputs.committed}}
+    if: ${{needs.get-latest-inklecate-release.outputs.committed}}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
