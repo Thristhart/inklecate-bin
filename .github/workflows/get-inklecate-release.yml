@@ -12,7 +12,7 @@ jobs:
       contents: write
     outputs:
       committed: ${{steps.commit.outputs.committed}}
-      ref: ${{steps.commit.outputs.commit_sha}}
+      ref: ${{steps.commit.outputs.commit_long_sha}}
 
     steps:
       - uses: actions/checkout@v4
@@ -35,7 +35,7 @@ jobs:
 
       - name: Write version from release tag to package.json
         run: |
-          VERSION="${{steps.get-release.outputs.tag_name}}-alpha3"
+          VERSION="${{steps.get-release.outputs.tag_name}}-alpha4"
           VERSION="${VERSION#v}"
           VERSION="${VERSION#.}"
           jq --arg VERSION "$VERSION" '.version = $VERSION' package.json > package_with_version.json
