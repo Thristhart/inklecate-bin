@@ -36,10 +36,7 @@ jobs:
           jq --arg VERSION "$VERSION" '.version = $VERSION' package.json > package_with_version.json
           mv package_with_version.json package.json
           
-      # Setup .npmrc file to publish to npm
       - uses: actions/setup-node@v4
         with:
           registry-url: 'https://registry.npmjs.org'
-      - run: npm publish --provenance --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - run: npm publish --access public
