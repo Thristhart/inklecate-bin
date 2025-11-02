@@ -1,4 +1,11 @@
 {
     "name": "inklecate-bin",
-    "description": "simple repackaging of the inklecate binaries on npm. automatically updated from github releases"
+    "description": "simple repackaging of the inklecate binaries on npm. automatically updated from github releases",
+    "version": "0.0.1",
+    "type": "module",
+    "main": "index.mjs",
+    "license": "MIT",
+    "repository": {
+        "url": "https://github.com/Thristhart/inklecate-bin"
+    }
 }
