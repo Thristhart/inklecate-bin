@@ -1,17 +1,17 @@
 {
-    "name": "inklecate-bin",
-    "description": "simple repackaging of the inklecate binaries on npm. automatically updated from github releases",
-    "version": "0.0.1",
-    "type": "module",
-    "main": "index.mjs",
-    "types": "index.d.ts",
-    "license": "MIT",
-    "repository": {
-        "url": "git+https://github.com/Thristhart/inklecate-bin.git"
-    },
-    "files": [
-        "index.mjs",
-        "index.d.ts",
-        "bin/**/*"
-    ]
+  "name": "inklecate-bin",
+  "description": "simple repackaging of the inklecate binaries on npm. automatically updated from github releases",
+  "version": "1.2.0-alpha2",
+  "type": "module",
+  "main": "index.mjs",
+  "types": "index.d.ts",
+  "license": "MIT",
+  "repository": {
+    "url": "git+https://github.com/Thristhart/inklecate-bin.git"
+  },
+  "files": [
+    "index.mjs",
+    "index.d.ts",
+    "bin/**/*"
+  ]
 }
