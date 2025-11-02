@@ -12,6 +12,7 @@ jobs:
       contents: write
     outputs:
       committed: ${{steps.commit.outputs.committed}}
+      ref: ${{steps.commit.outputs.commit_sha}}
 
     steps:
       - uses: actions/checkout@v4
@@ -33,7 +34,7 @@ jobs:
 
       - name: Write version from release tag to package.json
         run: |
-          VERSION="${{steps.get-release.outputs.tag_name}}-alpha2"
+          VERSION="${{steps.get-release.outputs.tag_name}}-alpha3"
           VERSION="${VERSION#v}"
           VERSION="${VERSION#.}"
           jq --arg VERSION "$VERSION" '.version = $VERSION' package.json > package_with_version.json
@@ -54,6 +55,7 @@ jobs:
     if: ${{needs.get-latest-inklecate-release.outputs.committed}}
     steps:
       - uses: actions/checkout@v4
+        ref: ${{needs.get-latest-inklecate-release.outputs.ref}}
       - uses: actions/setup-node@v4
         with:
           registry-url: 'https://registry.npmjs.org'
