@@ -1,0 +1,4 @@
+{
+    "name": "inklecate-bin",
+    "description": "simple repackaging of the inklecate binaries on npm. automatically updated from github releases"
+}
