@@ -39,8 +39,10 @@ jobs:
           
       - uses: actions/setup-node@v4
         with:
-          registry-url: 'https://registry.npmjs.org'
           node-version: latest
       - name: Update npm
         run: npm install -g npm@latest
-      - run: npm publish --access public --tag alpha
+      - run: npm publish --access public --tag alpha --registry=https://npm.pkg.github.com
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: npm publish --access public --tag alpha --registry=https://registry.npmjs.org
